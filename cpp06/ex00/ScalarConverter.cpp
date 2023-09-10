@@ -52,10 +52,14 @@ int	isInf(string str)
 
 void	ScalarConverter::convert(string str)
 {
-	string				fractionString;
-	float				fraction;
-	int 				fractionLength;
-	int 				pos;
+	string		fractionString;
+	int 		fractionLength;
+	double		doublevalue;
+	float		fraction;
+	float		floatvalue;
+	int			intvalue;
+	int			type;
+	int 		pos;
 
 	type = getType(str);
 	pos = str.find(".");

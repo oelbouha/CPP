@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 23:16:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/26 15:30:07 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:22:16 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 Serializer::Serializer(const Serializer& other)
 {
+	cout << "Serializer copy constructor called" << endl;
 	*this = other;
 }
 
 Serializer& Serializer::operator=(const Serializer& copy)
 {
+	cout << "Serializer copy assignment constructor called" << endl;
 	if (this != &copy)
 	{
 		
@@ -26,9 +28,15 @@ Serializer& Serializer::operator=(const Serializer& copy)
 	return (*this);
 }
 
-Serializer::Serializer(){}
+Serializer::Serializer()
+{
+	cout << "Serializer Default constructor called" << endl;
+}
 
-Serializer::~Serializer(){}
+Serializer::~Serializer()
+{
+	cout << "Serializer Destructor called" << endl;
+}
 
 uintptr_t Serializer::serialize(Data* ptr)
 {

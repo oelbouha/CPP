@@ -6,12 +6,12 @@
 #    By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:50:16 by oelbouha          #+#    #+#              #
-#    Updated: 2023/08/26 10:51:18 by oelbouha         ###   ########.fr        #
+#    Updated: 2023/09/07 00:19:46 by oelbouha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := convert
-CC := c++
+CC = c++
 FLAGS := -std=c++98  -Wall -Wextra -Werror
 SRC := main.cpp ScalarConverter.cpp utils.cpp
  

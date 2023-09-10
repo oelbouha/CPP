@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 12:50:07 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/07 13:18:17 by oelbouha         ###   ########.fr       */
+/*   Created: 2023/09/07 13:15:36 by oelbouha          #+#    #+#             */
+/*   Updated: 2023/09/07 13:16:27 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DATA_HPP
+#define DATA_HPP
+
 #include "Serializer.hpp"
-#include "Data.hpp"
 
-void	init()
+class	Data
 {
-	Serializer obj;
+	private:
+		int value;
+	public:
+		Data(int value)
+		{
+			this->value = value;
+		};
+		void print()
+		{
+			cout << value << endl;
+		}
+};
 
-	Data *ptr = new Data(10);
-	ptr->print();
-
-	ptr = obj.deserialize(obj.serialize(ptr));
-	ptr->print();
-
-	delete ptr;
-}
-
-int main()
-{
-	init();
-	return (0);
-}
+#endif

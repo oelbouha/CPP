@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:35:13 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/26 12:44:59 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:11:50 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ using std::endl;
 class	ScalarConverter
 {
 	private:
-		float 				floatvalue;
-		double				doublevalue;
-		int					intvalue;
-		int 				type;
+
 
 	public:
 		ScalarConverter();
@@ -42,7 +39,7 @@ class	ScalarConverter
 		ScalarConverter&	operator=(const ScalarConverter& original);
 		~ScalarConverter();
 
-		void	convert(string str);
+		static void	convert(string str);
 };
 
 
