@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 23:30:55 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/06 15:25:47 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/13 22:25:57 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ShrubberyCreationForm::ExecuteAction() const
 		cout << "couldn't open the file" << endl;
 		return ;
 	}
-	file << "
+	file << "\
          #\n\
         ###\n\
        #####\n\
@@ -59,7 +59,7 @@ void	ShrubberyCreationForm::ExecuteAction() const
   ###############\n\
  #################\n\
          |\n\
-         |\n
+         |\n\
 			" << endl;
 	file.close();
 }

@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 23:16:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/06 12:41:59 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:45:25 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	AForm::beSigned(Bureaucrat& Bureaucrat)
 
 void	AForm::execute(Bureaucrat const& executor) const
 {
-	if (this->getGradeToSign() < executor.getGrade())
+	if (this->gradeToExecute() < executor.getGrade())
 		throw AForm::GradeTooLowException();
 	if (this->getSign() == false)
 	{

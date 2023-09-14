@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:50:07 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/06 12:07:46 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:44:20 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init()
 {
 	try
 	{
-		Bureaucrat p1("othman", 11);
+		Bureaucrat p1("othman", 155);
 		cout << p1;
 
 		AForm *form = new RobotomyRequestForm("robot");

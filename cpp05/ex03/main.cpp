@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:50:07 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/24 10:16:53 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:42:19 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ void	init()
 	try
 	{
 		Intern someRandomIntern;
-	
+
 		AForm* rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		rrf = someRandomIntern.makeForm("robotomdsdsdsy request", "Bender");
+		delete rrf;
 	}
 	catch (std::exception& e)
 	{
