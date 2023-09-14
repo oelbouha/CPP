@@ -6,14 +6,14 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:43:55 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/26 22:08:20 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/14 21:49:04 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "A.hpp"
 
 A::A(){
-	cout << "A called " << endl;
+	cout << "A default constructor called" << endl;
 }
 
 A::~A(){}

@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:50:07 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/27 12:54:14 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:19:59 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 
 void	init()
 {
-	Base *a = Base::generate();
-	(void)a;
+	Base *a = new A();
+	Base *b = a->generate();
+	b->identify(*b);
+	delete a;
+	delete b;
 }
 
 int main()

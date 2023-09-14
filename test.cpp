@@ -43,8 +43,20 @@ class Car
 
 int main()
 {
-	Car::Engine nested;
-	nested.print();
+    // char* ch = reinterpret_cast<char*>(p);
+    // int* p = new int(65);
+    // char* ch = new char[100];
+	// const char c = 50;
+	// ch[0] = c;
+	// ch[1] = 'g';
+    // cout << *p << endl;
+    // cout << *ch << endl;
+    // cout << p << endl;
+    // cout << ch << endl;
+	srand(time(0));
+	int a = rand() % 3;
+	cout << a  << endl;
+	return 0;
 }
 
 /*	

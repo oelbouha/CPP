@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -15,11 +16,78 @@
 #include "B.hpp"
 #include "C.hpp"
 
-Base::Base(){}
+Base::Base(){
+	cout << "Base constructor called" << endl;
+}
 
-Base::~Base(){}
+Base::~Base()
+{
+	cout << "Base destructor called" << endl;
+}
 
-Base*	Base::generate(void){
-	Base *ptr = new A();
-	return ptr;
+Base*	Base::generate(void)
+{
+	int		random_number;
+	Base	*arr[3];
+	
+	arr[0] = new A();
+	arr[1] = new B();
+	arr[2] = new C();
+	srand(time(0));
+	random_number = rand() % 3;
+	for(int i = 0; i < 3; i++)
+	{
+		if (i != random_number)
+			delete arr[i];
+	}
+	return (arr[random_number]);
+}
+
+void	Base::identify(Base *p)
+{
+	string	names[3] = {"A", "B", "C"};
+	Base 	*arr[3];
+	int		i;
+
+	arr[0] = dynamic_cast<A*>(p);
+	arr[1] = dynamic_cast<B*>(p);
+	arr[2] = dynamic_cast<C*>(p);
+	for(i = 0; i < 3 && arr[i]; i++);
+	cout << names[i] << endl;
+}
+
+void	Base::identify(Base &p)
+{
+	try
+	{
+		A &a = dynamic_cast<A&>(p);
+		cout << "A" << endl;
+		return ;
+		(void)a;
+	}
+	catch(std::bad_cast& e)
+	{
+		// cout << "bad casting" << endl;
+	}
+	try
+	{
+		B &b = dynamic_cast<B&>(p);
+		cout << "B" << endl;
+		return ;
+		(void)b;
+	}
+	catch(std::bad_cast& e)
+	{
+		// cout << "bad casting" << endl;
+	}
+	try
+	{
+		C &c = dynamic_cast<C&>(p);
+		cout << "C" << endl;
+		(void)c;
+	}
+	catch(std::bad_cast& e)
+	{
+		cout << "bad casting" << endl;
+	}
 }

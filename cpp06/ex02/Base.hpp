@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:35:13 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/27 12:54:00 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:13:24 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ class	Base
 	public:
 		Base();
 		virtual	~Base();
-		static Base*	generate(void);
+		Base*	generate(void);
+		void	identify(Base* p);
+		void 	identify(Base& p);
 };
 
 

@@ -67,14 +67,14 @@ void	ScalarConverter::convert(string str)
 	if (type == DOUBLETYPE)
 	{
 		fractionLength = fractionString.length();
-		fraction = ft_atoi(fractionString) * pow(10, -fractionLength);
+		fraction = ft_atoi(fractionString) * pow(10, - fractionLength);
 		doublevalue = ft_atoi(str.substr(0, pos)) + fraction;
 		display(doublevalue);
 	}
 	else if (type == FLOATTYPE)
 	{
 		fractionLength = fractionString.length() - 1;
-		fraction = ft_atoi(fractionString) * pow(10, -fractionLength);
+		fraction = ft_atoi(fractionString) * pow(10, - fractionLength);
 		floatvalue = ft_atoi(str.substr(0, pos)) + fraction;
 		display(floatvalue);
 	}
@@ -100,3 +100,13 @@ void	ScalarConverter::convert(string str)
 		cout <<  "double: nan" <<  endl;
 	}
 }
+/*
+	float 3.75
+
+	0011.11
+	1.111 * 2 ^ 1
+	
+	0 10000000 10000000000000000000
+
+0
+*/
