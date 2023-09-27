@@ -1,4 +1,7 @@
 #include <iostream>
+#include <array>
+#include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -41,25 +44,45 @@ class Car
 		};
 };
 
+#include <iostream>
+
+template <typename T>
+void printcoll (T const& coll)
+{
+    typename T::const_iterator pos;  			// iterator to iterate over coll
+    typename T::const_iterator end(coll.end());	// end position
+
+    for (pos=coll.begin(); pos!=end; ++pos)
+	{
+        std::cout << *pos << ' ';
+    }
+    std::cout << std::endl;
+}
+
+
+#include <vector>
+#include <array>
+
+#define NAN 1;
+
 int main()
 {
-    // char* ch = reinterpret_cast<char*>(p);
-    // int* p = new int(65);
-    // char* ch = new char[100];
-	// const char c = 50;
-	// ch[0] = c;
-	// ch[1] = 'g';
-    // cout << *p << endl;
-    // cout << *ch << endl;
-    // cout << p << endl;
-    // cout << ch << endl;
-	srand(time(0));
-	int a = rand() % 3;
-	cout << a  << endl;
-	return 0;
+	double n = 10.111111111;;
+	cout << std::setprecision(8) ;
+	cout << n << endl;
 }
 
 /*	
+    char* ch = reinterpret_cast<char*>(p);
+    int* p = new int(65);
+    char* ch = new char[100];
+	const char c = 50;
+	ch[0] = c;
+	ch[1] = 'g';
+    cout << *p << endl;
+    cout << *ch << endl;
+    cout << p << endl;
+    cout << ch << endl;
 	Test *base = new d1();
 
 	base->add();

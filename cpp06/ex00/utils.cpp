@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 10:49:29 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/26 10:50:16 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/20 23:39:47 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	getType(string str)
 	type = 0;
 	if (str.length() == 1 && !isdigit(str[0]))
 		return (CHARTYPE);
+	else if (str[0] == '-' || str[0] == '+')
+		str = str[1];
 	for (size_t i = 0; i < str.length(); i++)
 	{
 		if (i == str.length() - 1 && str[i] == 'f')
@@ -35,31 +37,4 @@ int	getType(string str)
 	if (type == 0)
 		type = INTTYPE;
 	return (type);
-}
-
-int	ft_atoi(string str)
-{
-	unsigned long long	res;
-	int					sign;
-	int					i;
-
-	sign = 1;
-	res = 0;
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\f' || str[i] == '\r'
-		|| str[i] == '\v' || str[i] == '\t')
-		i++;
-	if (str[i] != '\0' && (str[i] == '-' || str[i] == '+'))
-	{
-		if (str[i] == '-')
-			sign = sign * -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = (res * 10) + str[i] - 48;
-		i++;
-	}
-	res *= sign;
-	return (res);
 }

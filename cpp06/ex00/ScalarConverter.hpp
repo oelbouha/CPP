@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:35:13 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/07 11:11:50 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:27:53 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <cmath>  
+#include <cmath>
+#include <iomanip>
 
 using std::cout;
 using std::string;
