@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 14:41:33 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/14 10:39:43 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:21:46 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class	Intern
 		Intern();
 		Intern(const Intern& other);
 		Intern&	operator=(const Intern& original);
-		virtual ~Intern();
+		~Intern();
 
 		AForm*	makeForm(string name, string target);
 };
