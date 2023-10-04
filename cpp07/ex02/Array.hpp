@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:51:44 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/18 11:54:00 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:47:24 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,17 @@ class Array
 			cout << "default constructor called" << endl;
 			arr_size = 10;
 			arr = new T[arr_size];
-			// for(int i = 0; i < arr_size; i++)
-			// 	arr[i] = 0;
 		};
 		Array(unsigned int n)
 		{
 			arr = new T[n];
-			// for(int i = 0; i < arr_size; i++)
-			// 	arr[i] = 0;
+			
 			arr_size = n;
 		};
 		Array(const Array& copy)
 		{
 			cout << "copy constructor called" << endl;
-			this->arr = new T[arr_size];
+			this->arr = new T[copy.arr_size];
 			*this = copy;
 		};
 		Array& operator=(const Array& other)

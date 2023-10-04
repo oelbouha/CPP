@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:51:44 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/18 11:58:43 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:00:01 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ template <typename data> void add(data x)
 template <typename data> void iter(data *arr, int arr_length, void (*func)(data))
 {
 	for(int i = 0; i < arr_length; i++)
-	{
 		func(arr[i]);
-	}
 }
 
 #endif

@@ -6,7 +6,7 @@
 #    By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:50:16 by oelbouha          #+#    #+#              #
-#    Updated: 2023/10/03 16:47:38 by oelbouha         ###   ########.fr        #
+#    Updated: 2023/09/18 14:50:59 by oelbouha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ obj/%.o:%.cpp
 	@mkdir -p obj
 	@$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJ) 
 	@$(CC) $(FLAGS) -o $@ $^
 
 clean :

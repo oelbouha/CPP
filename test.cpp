@@ -10,6 +10,7 @@ class Car
 	public:
 		int x;
 		int y;
+
 	public :
 		Car()
 		{
@@ -44,35 +45,89 @@ class Car
 		};
 };
 
-#include <iostream>
+#include <iostream>  
+using namespace std;  
 
-template <typename T>
-void printcoll (T const& coll)
+class Parent  
+{  
+    public:
+	int a;
+	int b;
+		Parent() {
+			cout << "parent constructor\n";
+		}
+        void display()  
+        {  
+            cout << "It is the function of the Parent class "<< endl;   
+        }
+        void d()  
+        {  
+            cout << "It is the function of the Parent class    ddddsdsdsdsdsd"<< endl;   
+        }
+};  
+ 
+class Child : public Parent  
+{  
+    public:  
+		Child() {
+			cout << "child constructor\n";
+		}
+        void display()  
+        {
+			int a  = 10;
+            cout << "it is the function of the Child class " << a << endl;  
+        }
+};  
+  
+class Fake 
 {
-    typename T::const_iterator pos;  			// iterator to iterate over coll
-    typename T::const_iterator end(coll.end());	// end position
-
-    for (pos=coll.begin(); pos!=end; ++pos)
-	{
-        std::cout << *pos << ' ';
-    }
-    std::cout << std::endl;
-}
-
-
-#include <vector>
-#include <array>
-
-#define NAN 1;
+	public:
+		int value;
+    public:  
+		Fake(int a): value(a){};
+        void display()  
+        {
+			int a  = 10;
+			value = 20;
+            cout << "it is the function of the Child class " << a << endl;  
+        }
+};
 
 int main()
 {
-	double n = 10.111111111;;
-	cout << std::setprecision(8) ;
-	cout << n << endl;
-}
+	Fake obj(10);
+	// Parent p;
+	string strobj("hello");
+	
+	float nb = 75.75;
+	int intValue = 299;
+	char c = 'A';
 
-/*	
+    double doublePtr = reinterpret_cast<char >(intValue);
+
+	c = static_cast<char>(nb);
+	int p;
+	Fake s(20);
+	s = static_cast<Fake>(obj);
+	string st = static_cast<string>(strobj);
+	strobj.erase(2);
+	cout << s.value << st << endl << strobj << endl;
+	// cout << nb << endl << s << endl;
+    return nb + c + intValue == 0;
+} 
+
+/*
+	float n = 3.75
+	0.001
+	11.11 ==> 1.111 * 2^1
+
+
+	0 10000001 111000000000000000000
+	1 0000000 11100000000000000000000
+
+	11
+	0 00000000 000000000000000000000011
+
     char* ch = reinterpret_cast<char*>(p);
     int* p = new int(65);
     char* ch = new char[100];

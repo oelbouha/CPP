@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:50:07 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:48 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:49:07 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	init(string str)
 {
-	// cout << str << endl;
 	ScalarConverter obj;
 
 	obj.convert(str);
-	
 }
 
 int main(int c, char **v)

@@ -16,13 +16,17 @@
 #include "B.hpp"
 #include "C.hpp"
 
-Base::Base(){
-	cout << "Base constructor called" << endl;
-}
+Base::Base(){}
 
-Base::~Base()
+Base::~Base(){}
+
+void	free_array(Base **arr, int i)
 {
-	cout << "Base destructor called" << endl;
+	for(int j = 0; j < 3; j++)
+	{
+		if (j != i)
+			delete arr[j];
+	}
 }
 
 Base*	Base::generate(void)
@@ -35,11 +39,7 @@ Base*	Base::generate(void)
 	arr[2] = new C();
 	srand(time(0));
 	random_number = rand() % 3;
-	for(int i = 0; i < 3; i++)
-	{
-		if (i != random_number)
-			delete arr[i];
-	}
+	free_array(arr, random_number);
 	return (arr[random_number]);
 }
 
@@ -65,10 +65,7 @@ void	Base::identify(Base &p)
 		return ;
 		(void)a;
 	}
-	catch(std::bad_cast& e)
-	{
-		// cout << "bad casting" << endl;
-	}
+	catch(std::bad_cast& e){}
 	try
 	{
 		B &b = dynamic_cast<B&>(p);
@@ -76,18 +73,12 @@ void	Base::identify(Base &p)
 		return ;
 		(void)b;
 	}
-	catch(std::bad_cast& e)
-	{
-		// cout << "bad casting" << endl;
-	}
+	catch(std::bad_cast& e){}
 	try
 	{
 		C &c = dynamic_cast<C&>(p);
 		cout << "C" << endl;
 		(void)c;
 	}
-	catch(std::bad_cast& e)
-	{
-		cout << "bad casting" << endl;
-	}
+	catch(std::bad_cast& e){}
 }

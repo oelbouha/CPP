@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.cpp                                              :+:      :+:    :+:   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 21:43:55 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/02 13:19:31 by oelbouha         ###   ########.fr       */
+/*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
+/*   Updated: 2023/10/04 13:45:03 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "A.hpp"
+#include "BitcoinExchange.hpp"
 
-A::A(){
+BitcoinExchange::BitcoinExchange(){}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	*this = other;
 }
 
-A::~A(){}
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
+{
+	if (this != &copy)
+	{
+		
+	}
+	return (*this);
+}
+
+BitcoinExchange::~BitcoinExchange(){}

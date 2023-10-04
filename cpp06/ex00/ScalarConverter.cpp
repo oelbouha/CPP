@@ -59,10 +59,12 @@ void	displayInt(double nb)
 
 int	isInf(string str)
 {
-	if (str == "+nf" || str == "-inf" || str == "inf")
-		return (1);
-	else if (str == "+inff" || str == "-inff")
-		return (1);
+	string arr[6] = {"+inf", "-inf", "inf", "+inff", "-inff", "inff"};
+	for(int i = 0; i < 6; i++)
+	{
+		if (str == arr[i])
+			return (1);
+	}
 	return (0);
 }
 
@@ -100,19 +102,3 @@ void	ScalarConverter::convert(string str)
 	}
 }
 
-/*
-	float nb = 3.75
-
-	int n = (int)nb;
-
-	0011.11
-	1.111 * 2^1
-	
-3.75 ==>	0 10000000 11100000000000000000000
-
-1/ remove the fraction part
-	
-	0 10000000
-	
-
-*/

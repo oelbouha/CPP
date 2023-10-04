@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:35:13 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/20 22:27:53 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:48:05 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ using std::endl;
 
 class	ScalarConverter
 {
-	private:
-
-
 	public:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
@@ -43,8 +40,6 @@ class	ScalarConverter
 		static void	convert(string str);
 };
 
-
-int	ft_atoi(string str);
 int	getType(string str);
 
 #endif

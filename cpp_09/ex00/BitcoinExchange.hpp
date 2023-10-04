@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.cpp                                              :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 21:43:55 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/02 13:19:31 by oelbouha         ###   ########.fr       */
+/*   Created: 2023/10/04 13:13:46 by oelbouha          #+#    #+#             */
+/*   Updated: 2023/10/04 13:43:31 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "A.hpp"
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
-A::A(){
-}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <array>
 
-A::~A(){}
+using std::cout;
+using std::endl;
+
+class BitcoinExchange
+{
+	public:
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange& other);
+		BitcoinExchange&	operator=(const BitcoinExchange& original);
+		~BitcoinExchange();
+
+};
+
+#endif
