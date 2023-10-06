@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/04 13:45:03 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:43:47 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,8 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
 }
 
 BitcoinExchange::~BitcoinExchange(){}
+
+BitcoinExchange::getValue()
+{
+	return ()
+}

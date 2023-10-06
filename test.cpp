@@ -1,3 +1,4 @@
+#include <map>
 #include <iostream>
 #include <array>
 #include <iostream>
@@ -81,7 +82,7 @@ class Child : public Parent
   
 class Fake 
 {
-	public:
+	private:
 		int value;
     public:  
 		Fake(int a): value(a){};
@@ -91,30 +92,21 @@ class Fake
 			value = 20;
             cout << "it is the function of the Child class " << a << endl;  
         }
+		Fake&	operator=(const Fake& copy)
+		{
+			cout << copy.value << endl;
+			return (*this);
+		}
 };
 
+ 
 int main()
 {
 	Fake obj(10);
-	// Parent p;
-	string strobj("hello");
-	
-	float nb = 75.75;
-	int intValue = 299;
-	char c = 'A';
 
-    double doublePtr = reinterpret_cast<char >(intValue);
-
-	c = static_cast<char>(nb);
-	int p;
-	Fake s(20);
-	s = static_cast<Fake>(obj);
-	string st = static_cast<string>(strobj);
-	strobj.erase(2);
-	cout << s.value << st << endl << strobj << endl;
-	// cout << nb << endl << s << endl;
-    return nb + c + intValue == 0;
-} 
+	cout << obj.value << endl;
+	return 0;
+}
 
 /*
 	float n = 3.75

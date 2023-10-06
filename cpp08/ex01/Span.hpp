@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:51:44 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/20 14:02:23 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:32:20 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 #define SPAN_HPP
 
 #include <algorithm>
-#include <array>
-#include <functional>
+#include <vector>
 #include <iostream>
-#include <string_view>
 
 using std::cout;
 using std::endl;
@@ -25,27 +23,28 @@ using std::endl;
 class Span
 {
 	private:
-		int	*arr;
-		int	index;
-		int	arr_length;
-
+		std::vector<int> arr;
+		std::vector<int>::iterator it;
+		size_t	max_length;
 	public:
 		Span();
 		Span(unsigned int n);
 		Span(const Span& copy);
 		Span& operator=(const Span& copy);
 		~Span();
-		
-		class Exec : public std::exception
-		{
-			public:
-				const char* what() const throw();
-		};
-		
+
 		void	addNumber(int num);
 		void	addNumbers();
 		int		shortestSpan();
 		int		longestSpan();
+		void	print(){
+			it = arr.begin();
+			while (it != arr.end())
+			{
+				cout << *it << endl;
+				++it;
+			}
+		};
 };
 
 #endif

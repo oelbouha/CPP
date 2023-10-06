@@ -6,11 +6,11 @@
 #    By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:50:16 by oelbouha          #+#    #+#              #
-#    Updated: 2023/09/18 14:50:59 by oelbouha         ###   ########.fr        #
+#    Updated: 2023/10/04 15:16:04 by oelbouha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := array
+NAME := btc
 CC := c++
 FLAGS := -std=c++98  -Wall -Wextra -Werror
 SRC := main.cpp 

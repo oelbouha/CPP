@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:51:44 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/03 16:47:24 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:14:05 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ARRAY_HPP
 
 #include <iostream>
+#include <vector>
 
 using std::cout;
 using std::endl;
@@ -22,50 +23,51 @@ template <class T>
 class Array
 {
 	private:
-		T *arr;
-		int arr_size;
+		T	*arr;
+		int	arr_size;
+		int	index;
 	public:
-		Array()
-		{
-			cout << "default constructor called" << endl;
-			arr_size = 10;
-			arr = new T[arr_size];
+		Array(){
+			arr = NULL;
+			arr_size = 0;
+			index = 0;
 		};
-		Array(unsigned int n)
-		{
+		Array(unsigned int n){
 			arr = new T[n];
-			
 			arr_size = n;
+			index = 0;
 		};
-		Array(const Array& copy)
-		{
-			cout << "copy constructor called" << endl;
+		Array(const Array& copy){
 			this->arr = new T[copy.arr_size];
-			*this = copy;
+			for (int i = 0; i < copy.arr_size; i++)
+				arr[i] = copy.arr[i];
+			arr_size = copy.arr_size; 
 		};
-		Array& operator=(const Array& other)
-		{
-			cout << "copy  assignment constructor called" << endl;
-			for (int i = 0; i < arr_size; i++)
-			{
-				arr[i] = other.arr[i];
-			}
+		Array& operator=(const Array& copy){
+			delete[] arr;
+			arr = new T[copy.arr_size];
+			for (int i = 0; i < copy.arr_size; i++)
+				arr[i] = copy.arr[i];
+			arr_size = copy.arr_size; 
 			return (*this);
 		};
-		~Array(){
-			cout << "destructor called" << endl;
+		T& operator[](int index){
+			if (index > arr_size)
+				throw "index is biger than arr size";
+			return (arr[index]);
 		};
-		int	size() const
-		{
+		~Array(){
+			delete[] arr;
+		};
+		int	size() const{
 			return (arr_size);
 		};
-		void	print() const
-		{
-			cout << arr_size<< endl;
-			for(int i = 0; i < arr_size; i++)
-				cout << arr[i];
-			cout << endl;
-		};
+		void	push(T data){
+			if (index >= arr_size)
+				throw "Array is full";
+			arr[index] = data;
+			index++;
+		}
 };
 
 

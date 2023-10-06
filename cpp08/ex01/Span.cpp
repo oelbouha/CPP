@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 22:36:18 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/09/20 14:02:34 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:42:27 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Span::Span(const Span& copy)
 {
-	arr = new int[copy.arr_length];
 	*this = copy;
 }
 
@@ -22,44 +21,36 @@ Span& Span::operator=(const Span& copy)
 {
 	if (this != &copy)
 	{
-		for (int i = 0; i < copy.arr_length; i++)
-			arr[i] = copy.arr[i];
-		arr_length = copy.arr_length;
-		index = copy.arr_length;
+		arr.clear();
+		arr = copy.arr;
+		max_length = copy.max_length;
 	}
 	return (*this);
 }
 
 Span::Span()
 {
-	arr = NULL;
-	arr_length = 0;
-	index = 0;
+	max_length = 0;
 }
 
-Span::~Span()
-{
-	delete[] arr;
-}
+Span::~Span(){}
 
 Span::Span(unsigned int n)
 {
-	arr = new int[n];
-	arr_length = n;
-	index = 0;
+	arr.reserve(n);
+	max_length = n;
 }
 
 void	Span::addNumber(int num)
 {
-	if (index > arr_length)
-		throw Span::Exec();
-	this->arr[index] = num;
-	index++;
+	if (arr.size() >= max_length)
+		throw "array is full";
+	arr.push_back(num);
 }
 
 void	Span::addNumbers()
 {
-	for(int i = 0; i < arr_length; i++)
+	for(size_t i = 1; i < max_length ; i++)
 		addNumber(i);
 }
 
@@ -68,42 +59,24 @@ int	Span::shortestSpan()
 	int	max_distance;
 	int	diff;
 
-	if (index <= 1)
-		throw Exec();
-	std::sort(arr, arr + index, std::greater<int>());
-	max_distance = arr[0] - arr[1];
-	for(int i = 0; i < index; i++)
+	if (arr.size() <= 1)
+		throw "There is only one or zero element in the array";
+	std::sort(arr.begin(), arr.end());
+	it = arr.begin();
+	while(it != arr.end() - 1)
 	{
-		for(int j = i; j < index; j++)
-		{
-			diff = arr[i] - arr[j];
-			if (diff < max_distance && diff > 0)
-				max_distance = diff;
-		}
+		diff = *(it + 1) - *it;
+		if (diff < max_distance && diff > 0)
+			max_distance = diff;
+		it++;
 	}
 	return (max_distance);
 }
 
 int	Span::longestSpan()
 {
-	int	max_distance;
-
-	if (index <= 1)
-		throw Exec();
-	std::sort(arr, arr + index);
-	max_distance = 0;
-	for(int i = 0; i < index; i++)
-	{
-		for(int j = i; j < index; j++)
-		{
-			if (arr[j] - arr[i] > max_distance)
-				max_distance = arr[j] - arr[i];
-		}
-	}
-	return (max_distance);
-}
-
-const char * Span::Exec::what() const throw()
-{
-	return "array is full";
+	if (arr.size() <= 1)
+		throw "There is only one or zero element in the array";
+	std::sort(arr.begin(), arr.end());
+	return (*(--arr.end()) - *arr.begin());
 }
