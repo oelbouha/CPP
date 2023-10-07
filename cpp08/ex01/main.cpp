@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 23:01:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/06 17:41:52 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/07 12:04:28 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main()
 	try
 	{
 		sp.addNumbers();
-		s = sp;
 		s.print();
 		cout << "=============\n";
 		sp.addNumbers();
@@ -29,6 +28,7 @@ int main()
 	{
 		cout << error << endl;
 	}
+	
 	cout << sp.shortestSpan() << endl;
 	cout << sp.longestSpan() << endl;
 	return 0;
