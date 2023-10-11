@@ -100,12 +100,19 @@ class Fake
 };
 
  
+#include <boost/algorithm/string.hpp> 
+#include <iostream> 
+using namespace boost::algorithm; 
+using namespace std; 
+
 int main()
 {
-	Fake obj(10);
-
-	cout << obj.value << endl;
-	return 0;
+    std::string s = "\n\tHello World  \r\n";
+    boost::algorithm::trim(s);
+ 
+    std::cout << "START::" << s << "::END";
+ 
+    return 0;
 }
 
 /*

@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   RPN.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:13:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/11 11:44:20 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/08 22:06:27 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
-#include <map>
 #include <iostream>
 #include <algorithm>
-#include <fstream>
+#include <list>
+#include <deque>
 
 using std::cout;
 using std::endl;
 using std::string;
 
-class BitcoinExchange
+class RPN
 {
 	private:
-		std::map<string, double> database;
-		std::map<string, double>::iterator it;
-	public:
-		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange& other);
-		BitcoinExchange&	operator=(const BitcoinExchange& original);
-		~BitcoinExchange();
+		std::deque<int> stack;
+		std::deque<int>::iterator it;
+		int	result;
 
-		void	read_file(char *filename);
-		void	setupDatabase();
+	public:
+		RPN();
+		RPN(const RPN& other);
+		RPN&	operator=(const RPN& original);
+		~RPN();
+
+		void	reverseNotation(string input);
+		void	execute_operation(string str);
+		int		valid_input(string input);
+		int		getResult();
+		int		stack_size();
 };
 
-int	parsing_file(string str);
-int is_valid_number(string date);
+int		skip_spaces(string str);
+int		is_number(string str);
 
 #endif

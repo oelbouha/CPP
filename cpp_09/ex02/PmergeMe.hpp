@@ -1,43 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 13:13:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/11 11:44:20 by oelbouha         ###   ########.fr       */
+/*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
+/*   Updated: 2023/10/11 11:44:51 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
 
-#include <map>
+
 #include <iostream>
 #include <algorithm>
-#include <fstream>
+#include <list>
+#include <vector>
 
 using std::cout;
 using std::endl;
 using std::string;
 
-class BitcoinExchange
+class PmergeMe
 {
-	private:
-		std::map<string, double> database;
-		std::map<string, double>::iterator it;
 	public:
-		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange& other);
-		BitcoinExchange&	operator=(const BitcoinExchange& original);
-		~BitcoinExchange();
+		std::vector<int> data;
+		std::vector<int>::iterator it;
 
-		void	read_file(char *filename);
-		void	setupDatabase();
+	public:
+		PmergeMe();
+		PmergeMe(const PmergeMe& other);
+		PmergeMe&	operator=(const PmergeMe& original);
+		~PmergeMe();
+		void	print()
+		{
+			it = data.begin();
+			while (it != data.end())
+			{
+				cout << *it << endl;
+				it++;
+			}
+		}
 };
 
-int	parsing_file(string str);
-int is_valid_number(string date);
 
 #endif
