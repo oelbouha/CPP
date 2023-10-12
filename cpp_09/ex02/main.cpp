@@ -6,45 +6,40 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:22:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/11 11:46:26 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:11:07 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-bool is_positive_number(string input)
+
+void	is_positive_number(string input)
 {
 	size_t	i;
 
 	for(i = 0; input[i]; i++)
 	{
 		if (!isdigit(input[i]))
-			return (false);
+			throw "Not a positive number";
 	}
-	return (true);
 }
 
 void init(char **av)
 {
-	PmergeMe merge;
-	unsigned long value;
-	size_t	i;
-	
+	PmergeMe 	merge;
+	int			num;
+	size_t		i;
 
 	for(i = 0; av[i]; i++)
 	{
-		if (is_positive_number(av[i]))
-		{
-			value = std::strtod(av[i], NULL);
-			merge.data.push_back(value);
-		}
-		else
-		{
-			cout << "error: not a positive number " << endl;
-			exit(1);
-		}
+		is_positive_number(av[i]);
+		num = std::strtod(av[i], NULL);
+		merge.is_double(num);
+		merge.data.push_back(num);
 	}
-	merge.print();
+	merge.print("before");
+	merge.InsertionSort();
+	merge.print("after");
 }
 
 int main(int c, char **av)
@@ -54,6 +49,14 @@ int main(int c, char **av)
 		cout << "error: No input found" << endl;
 		return (1);
 	}
-	init(&av[1]);
+	try
+	{
+		init(&av[1]);
+	}
+	catch(const char *error)
+	{
+		cout << "error: " << error << endl;
+	}
 	return 0;
 }
+

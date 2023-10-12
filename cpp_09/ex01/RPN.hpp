@@ -37,7 +37,7 @@ class RPN
 
 		void	reverseNotation(string input);
 		void	execute_operation(string str);
-		int		valid_input(string input);
+		void	valid_input(string input);
 		int		getResult();
 		int		stack_size();
 };

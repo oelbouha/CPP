@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/11 11:18:59 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:02:16 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,17 @@ void	RPN::execute_operation(string str)
 	stack.push_back(result);
 }
 
-int	RPN::valid_input(string input)
+void	RPN::valid_input(string input)
 {
 	size_t	i;
 
 	for(i = 0; i < input.length() - 1; i++)
 	{
 		if (isdigit(input[i]) && isdigit(input[i + 1]))
-			return (0);
+			throw "Not a valid input";
 		else if (strchr(" */-+", input[i]) == NULL && !isdigit(input[i]))
-			return (0);
+			throw "Not a valid input";
 	}
-	return (1);
 }
 
 void	RPN::reverseNotation(string input)

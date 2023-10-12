@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/11 11:44:51 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/12 09:53:00 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,10 @@ class PmergeMe
 		PmergeMe(const PmergeMe& other);
 		PmergeMe&	operator=(const PmergeMe& original);
 		~PmergeMe();
-		void	print()
-		{
-			it = data.begin();
-			while (it != data.end())
-			{
-				cout << *it << endl;
-				it++;
-			}
-		}
+
+		void	InsertionSort();
+		void	is_double(int num);
+		void	print(string str);
 };
 
 
