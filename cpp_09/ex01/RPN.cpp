@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/21 12:53:54 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/22 11:36:40 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,24 @@ RPN::~RPN(){
 	stack.clear();
 }
 
-void	RPN::execute_operation(string str)
+void	RPN::execute_operation(string line)
 {
-	int	n1;
-	int	n2;
+	iterator	it;
+	int			n1;
+	int			n2;
 
 	if (stack.size() <= 1)
 		throw "error: not a valid input";
 	it = stack.end();
 	n1 = *--it;
 	n2 = *--it;
-	if (str == "+")
+	if (line == "+")
 		result = n1 + n2;
-	else if (str == "-")
+	else if (line == "-")
 		result = n2 - n1;
-	else if (str == "*")
+	else if (line == "*")
 		result = n2 * n1;
-	else if (str == "/")
+	else if (line == "/")
 		result = n2 / n1;
 	stack.erase(it);
 	stack.erase(++it);
@@ -79,8 +80,8 @@ void	RPN::reverseNotation(string input)
 	input = input.substr(skip_spaces(input));
 	last = input.length();
 	if (input[last - 1] == ' ')
-		last = input.find_last_not_of(" \t");
-	input = input.substr(0, last + 1);
+		last = input.find_last_not_of(" \t") + 1;
+	input = input.substr(0, last);
 	while (input.length())
 	{
 		str = input.substr(0, 1);

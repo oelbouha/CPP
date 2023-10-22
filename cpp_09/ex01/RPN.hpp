@@ -26,7 +26,7 @@ class RPN
 {
 	private:
 		std::deque<int> stack;
-		std::deque<int>::iterator it;
+		typedef std::deque<int>::iterator iterator;
 		int	result;
 
 	public:

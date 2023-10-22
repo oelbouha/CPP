@@ -6,14 +6,14 @@
 #    By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:50:16 by oelbouha          #+#    #+#              #
-#    Updated: 2023/10/08 22:37:41 by oelbouha         ###   ########.fr        #
+#    Updated: 2023/10/22 11:26:57 by oelbouha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := RPN
 CC := c++
 FLAGS := -std=c++98  -Wall -Wextra -Werror
-SRC := main.cpp  RPN.cpp
+SRC := main.cpp  RPN.cpp utils.cpp
 
 OBJ := $(SRC:.cpp=.o)
 OBJ := $(addprefix obj/, $(OBJ))

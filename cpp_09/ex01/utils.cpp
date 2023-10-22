@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 23:01:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/22 11:38:21 by oelbouha         ###   ########.fr       */
+/*   Created: 2023/10/22 11:27:08 by oelbouha          #+#    #+#             */
+/*   Updated: 2023/10/22 11:27:21 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-void init(char *input)
+int	is_number(string str)
 {
-	RPN rpn;
+	size_t i;
 
-	rpn.valid_input(input);
-	rpn.reverseNotation(input);
-	if (rpn.stack_size() == 1)
-		cout << "result ==> " << rpn.getResult() << endl;
-	else
-		cout << "error: not a valid input" << endl;
+	for(i = 0; i < str.length(); i++)
+	{
+		if (!isdigit(str[i]))
+			return (0);
+	}
+	return (1);
 }
 
-int main(int c, char **v)
+int	skip_spaces(string str)
 {
-	if (c != 2)
+	size_t i;
+
+	for(i = 0; i < str.length(); i++)
 	{
-		cout << "error: No input found" << endl;
-		return (1);
+		if (str[i] != ' ' && str[i] != '\t')
+			return (i);	
 	}
-	try
-	{
-		init(v[1]);	
-	}
-	catch(const char *error)
-	{
-		cout << "error: " << error << endl;
-	}
-	return 0;
+	return (0);
 }
