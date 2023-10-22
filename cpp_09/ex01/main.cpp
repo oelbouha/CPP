@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 23:01:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/12 10:07:06 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:45:57 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	is_number(string str)
 int	skip_spaces(string str)
 {
 	size_t i;
+
 	for(i = 0; i < str.length(); i++)
 	{
 		if (str[i] != ' ' && str[i] != '\t')
@@ -66,3 +67,9 @@ int main(int c, char **v)
 	}
 	return 0;
 }
+
+
+/*
+./RPN "-1     2-" segf
+
+*/

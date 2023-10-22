@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/12 09:53:00 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:59:17 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,18 @@ class PmergeMe
 	public:
 		std::vector<int> data;
 		std::vector<int>::iterator it;
-
+		static const int	insertion = 10;
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe& other);
 		PmergeMe&	operator=(const PmergeMe& original);
 		~PmergeMe();
 
-		void	InsertionSort();
+		void	InsertionSort(std::vector<int>& data, int left, int right);
+		void	mergeInsertion(std::vector<int>& data, int left, int right);
 		void	is_double(int num);
 		void	print(string str);
+		// PmergeMe data(size);
 };
 
 

@@ -6,19 +6,17 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/12 10:02:16 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:53:54 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN()
-{
+RPN::RPN(){
 	result = 0;
 }
 
-RPN::RPN(const RPN& other)
-{
+RPN::RPN(const RPN& other){
 	*this = other;
 }
 
@@ -26,23 +24,23 @@ RPN& RPN::operator=(const RPN& copy)
 {
 	if (this != &copy)
 	{
-		
+		stack.clear();
+		stack = copy.stack;
 	}
 	return (*this);
 }
 
-RPN::~RPN(){}
+RPN::~RPN(){
+	stack.clear();
+}
 
 void	RPN::execute_operation(string str)
 {
 	int	n1;
 	int	n2;
 
-	if (stack.size() == 1)
-	{
-		cout << "error: not a valid input" << endl;
-		exit(0);
-	}
+	if (stack.size() <= 1)
+		throw "error: not a valid input";
 	it = stack.end();
 	n1 = *--it;
 	n2 = *--it;

@@ -6,18 +6,17 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/08 22:06:47 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/22 11:02:07 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
-{
+BitcoinExchange::BitcoinExchange(){
+	this->value = 0;
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
-{
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other){
 	*this = other;
 }
 
@@ -25,59 +24,89 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
 {
 	if (this != &copy)
 	{
-		
+		database.clear();
+		database = copy.database;
 	}
 	return (*this);
 }
 
-BitcoinExchange::~BitcoinExchange(){}
+BitcoinExchange::~BitcoinExchange(){
+	database.clear();
+}
 
-string getDate(string line, string delimetre)
+string BitcoinExchange::getDate(string line, string delimetre)
 {
-	string 	date;
-	int		pos;
+	int	pos;
 
 	pos = line.find(delimetre);
-	date = line.substr(0, pos);
-	return (date);
+	if (pos == -1)
+	{
+		date = line;
+		throw "Error: bad input => ";
+	}
+	return (line.substr(0, pos));
+}
+
+void	BitcoinExchange::parsing_file(string line)
+{
+	string 	year;
+	string 	month;
+	string 	day;
+	int		pos;
+
+	pos = line.find("-");
+	year = line.substr(0, pos);
+	line = line.substr(pos + 1);
+	pos = line.find("-");
+	month = line.substr(0, pos);
+	line = line.substr(pos + 1);
+	pos = line.find(" ");
+	day = line.substr(0, pos);
+	is_valid_format(line.substr(pos), " | ");
+	line = line.substr(pos + 3);
+	valid_date(year, month, day);
+	is_valid_number(line);
+	this->value = std::strtod(line.c_str(), NULL);
+	if (this->value >= 1000)
+		throw "Error: too large a number.";
+}
+
+void	BitcoinExchange::parsing_line(string line)
+{
+	iterator 	it;
+
+	date = getDate(line, " ");
+	parsing_file(line);
+	it = database.find(date);
+	if (it == database.end())
+	{
+		it = database.lower_bound(date);
+		cout << date << " => " << value;
+		cout << " = " << it->second * value <<  endl;
+	}
+	else
+		cout << date<< " => "<< value<< " = "<< it->second * value << endl;
 }
 
 void	BitcoinExchange::read_file(char *filename)
 {	
 	std::ifstream	file(filename);
 	string 			line;
-	string 			date;
-	double			value;
 
 	if (file.is_open() == false)
+		throw "error: couldn't open file";
+	while (std::getline(file, line))
 	{
-		cout << "error: couldn't open file" << endl;
-		exit(0);
-	}
-	while (std::getline(file, line) != NULL)
-	{
-		date = getDate(line, " ");
-		if (parsing_file(line) == 0)
+		try
 		{
-			line = line.substr(line.find("|") +  2);
-			value = std::strtod(line.c_str(), NULL);
-			if (value >= 1000)
-			{
-				cout << "Error: too large a number." << endl;
-				continue ;
-			}
-			it = database.find(date);
-			if (it == database.end())
-			{
-				it = database.lower_bound(date);
-				cout << date << " => " << value;
-				cout << " = " << it->second * value << endl;
-			}
+			parsing_line(line);
+		}
+		catch(const char * error)
+		{
+			if (strcmp(error, "Error: bad input => ") == 0)
+				cout << error << date << endl;
 			else
-			{
-				cout << date << " => " << value;
-				cout << " = " << it->second * value << endl;
-			}
+				cout << error << endl;
 		}
 	}
 }
@@ -90,16 +119,12 @@ void	BitcoinExchange::setupDatabase()
 	double			value;
 
 	if (!database_file.is_open())
-	{
-		cout << "error: couldn't open file" << endl;
-		exit(0);
-	}
+		throw "error: couldn't open file";
 	while (std::getline(database_file, line))
 	{
 		date = getDate(line, ",");
 		line = line.substr(line.find(",") + 1);
 		value = std::strtod(line.c_str(), NULL);
-		// cout << value << endl;
 		database[date] = value;
 	}
 }

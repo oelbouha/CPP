@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/12 11:18:20 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/12 21:49:11 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ PmergeMe::~PmergeMe(){}
 
 void	PmergeMe::is_double(int num)
 {
-	it = --data.begin();
-	while (++it != data.end())
+	for(it = data.begin(); it != data.end(); it++)
 		if (*it == num)
 			throw "There is double";
 }
@@ -43,45 +42,52 @@ void	PmergeMe::is_double(int num)
 void PmergeMe::print(string str)
 {
 	cout << str << ": ";
-	it = --data.begin();
-	while (++it != data.end())
+	for(it = data.begin(); it != data.end(); it++)
 		cout << *it << " ";
 	cout << endl;
 }
 
-void PmergeMe::InsertionSort()
+void	PmergeMe::mergeInsertion(std::vector<int>& data, int left, int right)
+{
+	int midle;
+
+	midle = (left + right) / 2;
+	cout << "midle: " << midle << data[1] << endl;
+	if (length <= insertion)
+		InsertionSort(data, data.size());
+	else
+	{
+		// mergeInsertion(data, midle);
+		// mergeInsertion(data[midle + 1], midle + 1);
+	}
+}
+
+void PmergeMe::InsertionSort(std::vector<int>& data, int left, int right)
 {
 	std::vector<int>::iterator previous;
 	std::vector<int>::iterator prev;
 	std::vector<int>::iterator cur;
 	int	temp;
-	int	index;
+	int	idx;
 	int	iteration;
 
-	it = ++data.begin();
 	prev = data.begin();
-	index = 1;
-	while (it != data.end())
+	for(it = prev + 1, idx = 1; it != data.end(); it++, idx++, prev++)
 	{
+		if (idx >= length)
+			break ;
 		cur = it;
 		temp = *it;
 		previous = prev;
-		if (temp < *previous)
+		for(iteration = idx; iteration; iteration--)
 		{
-			iteration = index + 1;
-			while (--iteration)
+			if (temp < *previous)
 			{
-				if (temp < *previous)
-				{
-					data.erase(cur);
-					data.insert(cur - 1, temp);
-					cur--;
-					previous--;
-				}
+				data.erase(cur);
+				data.insert(cur - 1, temp);
+				previous--;
+				cur--;
 			}
 		}
-		it++;
-		index++;
-		prev++;
 	}	
 }

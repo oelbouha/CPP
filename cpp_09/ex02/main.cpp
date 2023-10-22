@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:22:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/12 10:11:07 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/12 22:33:45 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ void init(char **av)
 		merge.data.push_back(num);
 	}
 	merge.print("before");
-	merge.InsertionSort();
+	merge.mergeInsertion(merge.data, 0, merge.data.size() - 1);
 	merge.print("after");
 }
 
 int main(int c, char **av)
 {
+	
 	if (c == 1)
 	{
 		cout << "error: No input found" << endl;
