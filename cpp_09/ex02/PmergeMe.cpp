@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/03 11:12:06 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:51:36 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void	PmergeMe::make_new_array(vec_of_pair_vector& arr)
 void	PmergeMe::insert_pend_toMain(vector_iterator pos, vector vec)
 {
 	vector_iterator it;
+	vector temp;
 
 	it = vec.begin();
 	while (it != vec.end())
@@ -215,6 +216,20 @@ void	PmergeMe::insert_pend_toMain(vector_iterator pos, vector vec)
 		data.insert(pos, *it);
 		pos++;
 		it++;
+	}
+	print_vector_elements(data);
+	int size = mainChain.back().size();
+	cout << "size: " << size << endl;
+	mainChain.clear();
+	for(it = data.begin(); it != data.end(); )
+	{
+		printf("herer\n");
+		for(int i = size; i; i--)
+		{
+			temp.push_back(*it);
+			mainChain.push_back(temp);
+			it++;
+		}
 	}
 }
 
@@ -224,7 +239,6 @@ void	PmergeMe::insertion()
 	vector_iterator		pos;
 	pend_iterator	pend_it;
 
-	print_pendCain();
 	data.clear();
 	pend_it = pendChain.begin();
 	int num = pend_it->first[0];
@@ -237,8 +251,9 @@ void	PmergeMe::insertion()
 
 void	PmergeMe::create_mainChain(vec_of_pair_vector& arr)
 {
-	cout << " ***********--   recursion    --**********\n";
-	print_array(arr);
+	cout << " ***********--   recursion    --**********\n\n";
+	cout << " =------   creating main and pend Chain    --------=\n\n";
+
 	std::pair<vector, iterator_to_vec_of_vectors> pair;
 	iterator_to_pair_vector 	it;
 	iterator_to_vec_of_vectors	cur;
@@ -247,24 +262,26 @@ void	PmergeMe::create_mainChain(vec_of_pair_vector& arr)
 	vector		b1;
 	vector		pend_vec;
 	
+	if (arr.size() == 1)
+		return ;
 	mainChain.clear();
 	pendChain.clear();
 	it = arr.begin();
 	b1 = it->first;
 	a1 = it->second;
+	mainChain.push_back(b1);
+	mainChain.push_back(a1);
 	cur = mainChain.begin();
 	while (++it != arr.end())
 	{
-		mainChain.push_back(b1);
-		mainChain.push_back(a1);
 		mainChain.push_back(it->second);
 		pair.first  = it->first;
 		pair.second = mainChain.end() - 1;
 		pendChain.push_back(pair);
 	}
 	insertion();
-	setup_mdata(arr);
-	print_array_vectors(mainChain, "mainChain");
+	print_array(arr);
+	
 }
 
 
@@ -312,11 +329,11 @@ void	PmergeMe::mergeSort(vec_of_pair_vector& arr)
 		make_paires(arr);
 		mergeSort(arr);
 	}
-	// print_array(arr);
 	// setup_mdata(arr);
 	// print_vector_elements(data);
 	split_paires(arr);
 	create_mainChain(arr);
+	// print_array(arr);
 }
 
 void PmergeMe::InsertionSort(vector data)

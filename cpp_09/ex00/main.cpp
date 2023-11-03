@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 23:01:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/22 11:00:17 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:26:56 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void init(char *filename)
 	{
 		cout << error << endl;
 	}
-	catch(std::exception& e)
+	catch(const std::exception& e)
 	{
 		cout << e.what() << endl;
 	}

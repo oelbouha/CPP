@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:13:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/22 10:39:02 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:18:24 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ using std::string;
 
 class BitcoinExchange
 {
-	private:
+	public:
 		typedef std::map<string, double>::iterator iterator;
-		std::map<string, double> database;
+		typedef std::map<string, double> map;
+
+	private:
 		string	date;
 		double	value;
+		map 	database;
 
 	public:
 		BitcoinExchange();

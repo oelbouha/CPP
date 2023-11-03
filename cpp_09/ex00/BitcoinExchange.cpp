@@ -6,11 +6,12 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/10/22 11:02:07 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:30:52 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <stdexcept>
 
 BitcoinExchange::BitcoinExchange(){
 	this->value = 0;
