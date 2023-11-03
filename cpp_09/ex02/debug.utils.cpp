@@ -1,0 +1,112 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug.utils.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/30 22:57:45 by oelbouha          #+#    #+#             */
+/*   Updated: 2023/11/02 13:42:54 by oelbouha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "PmergeMe.hpp"
+
+void	PmergeMe::print_array(PmergeMe::vec_of_pair_vector& arr)
+{
+	iterator_to_pair_vector	it;
+	vector_iterator			first;
+	vector_iterator			second;
+
+	it = arr.begin();
+	while (it != arr.end())
+	{
+		cout << "first: { ";
+		for(first = it->first.begin(); first != it->first.end(); first++)
+		{
+			if (first != it->first.end() - 1)
+				cout << *first << ", ";
+			else
+				cout << *first;
+		}
+		cout << " }" << endl;
+		cout << "second: { ";
+		for(first = it->second.begin(); first != it->second.end(); first++)
+			{
+			if (first != it->second.end() - 1)
+				cout << *first << ", ";
+			else
+				cout << *first;
+		}
+		cout << " }" << endl;
+		cout << "------------- \n";
+		it++;
+	}
+}
+
+void	PmergeMe::print_vector_elements(vector vec)
+{
+	vector_iterator cur;
+
+	printf("	+++++++++++++++++++++++++++++++++++++++++++++    \n");
+	cur = vec.begin();
+	while (cur != vec.end())
+	{
+		cout << "vec: " << *cur << endl;
+		cur++;	
+	}
+	printf("	+++++++++++++++++++++++++++++++++++++++++++++    \n");
+}
+
+void	PmergeMe::print_array_vectors(vector_of_vectors vec, string str)
+{
+	iterator_to_vector	cur;
+	vector_iterator 	it;
+	vector	temp;
+
+	printf("	--++++++++++++++++++++++++++++--    \n");
+	cout << str << ": { ";
+	cur = vec.begin();
+	while (cur != vec.end())
+	{
+		for(it = cur->begin(); it != cur->end(); it++)
+				cout << *it << " ,";
+		cur++;	
+	}
+	cout << "}" << endl;
+	printf("	--++++++++++++++++++++++++++++-- \n");
+}
+
+void	PmergeMe::print_pendCain()
+{
+	iterator_to_vec_of_vectors scnd;
+	pend_iterator it;
+	vector_iterator cur;
+
+	printf("	--++++++++++++++++++++++++++++--    \n");
+	cout << "pendChain" << ": { ";
+	it = pendChain.begin();
+	while (it != pendChain.end())
+	{
+		cur = it->first.begin();
+		for(; cur != it->first.end(); cur++)
+				cout << *cur << " ,";
+		cout << "}" << endl;
+		// if (it->second)
+		scnd = it->second;
+		if (scnd->begin() != scnd->end())
+			cout << "next : " << *scnd->begin() << endl;
+		it++;
+	}
+	printf("	--++++++++++++++++++++++++++++-- \n");
+}
+
+void PmergeMe::print(string str)
+{
+	vector_iterator it;
+
+	cout << str << ": ";
+	for(it = data.begin(); it != data.end(); it++)
+		cout << *it << " ";
+	cout << endl;
+}
