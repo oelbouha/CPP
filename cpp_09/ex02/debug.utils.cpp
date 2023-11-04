@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 22:57:45 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/02 13:42:54 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:42:08 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ void	PmergeMe::print_array_vectors(vector_of_vectors vec, string str)
 	vector	temp;
 
 	printf("	--++++++++++++++++++++++++++++--    \n");
-	cout << str << ": { ";
+	cout << str << ": \n{\n";
 	cur = vec.begin();
 	while (cur != vec.end())
 	{
+		cout << "vec { ";
 		for(it = cur->begin(); it != cur->end(); it++)
-				cout << *it << " ,";
+				cout << *it << " ";
+		cout << "}" << endl;
 		cur++;	
 	}
 	cout << "}" << endl;
@@ -84,13 +86,14 @@ void	PmergeMe::print_pendCain()
 	vector_iterator cur;
 
 	printf("	--++++++++++++++++++++++++++++--    \n");
-	cout << "pendChain" << ": { ";
+	cout << "pendChain" << ": \n{ \n";
 	it = pendChain.begin();
 	while (it != pendChain.end())
 	{
+		cout << "vec: { ";
 		cur = it->first.begin();
 		for(; cur != it->first.end(); cur++)
-				cout << *cur << " ,";
+				cout << *cur << " ";
 		cout << "}" << endl;
 		// if (it->second)
 		scnd = it->second;
@@ -98,6 +101,7 @@ void	PmergeMe::print_pendCain()
 			cout << "next : " << *scnd->begin() << endl;
 		it++;
 	}
+	cout << "}" << endl;
 	printf("	--++++++++++++++++++++++++++++-- \n");
 }
 

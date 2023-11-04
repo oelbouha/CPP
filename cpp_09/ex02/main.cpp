@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:22:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/03 10:30:57 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:24:22 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void init(char **av)
 		PmergeMe::vec_of_pair_vector arr = merge.create_pairs(2);
 		merge.mergeInsertion(merge.data, 0, merge.data.size() - 1);
 		// merge.print_array(arr);
+		merge.print_vector_elements(merge.data);
 	}
 	catch(const std::exception& e)
 	{

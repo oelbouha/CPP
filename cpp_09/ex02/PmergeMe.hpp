@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/03 10:29:22 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:44:32 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ class PmergeMe
 
 		vec_of_pair_vector	create_pairs(int size);
 		void		insertion();
-		void		insert_pend_toMain(vector_iterator pos, vector vec);
+		void		copy_mainchain_to_data();
+		void		copy_data_to_mainchain(int size);
+		void		copy_mainChain_to_array(vec_of_pair_vector& arr);
+		void		insert_pend_to_data(vector_iterator pos, vector vec);
 		void		setup_mdata(vec_of_pair_vector& arr);
 		void		make_new_array(vec_of_pair_vector& arr);
 		void		make_paires(vec_of_pair_vector& arr);
