@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/05 15:34:55 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:55:36 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <exception>
 #include <algorithm>
 #include <list>
+#include <sys/_types/_size_t.h>
 #include <utility>
 #include <vector>
 
@@ -28,62 +29,51 @@ using std::string;
 class PmergeMe
 {
 	public:
-		typedef	std::vector<int>									vector;
-		typedef std::vector<vector>									vector_of_vectors;
-		typedef std::vector<vector>::iterator						iterator_to_vec_of_vectors;
-		typedef std::vector<vector>::iterator 						iterator_to_vector;
-		typedef	std::vector<int>::iterator							vector_iterator;
-		typedef	std::pair<std::vector<int>, std::vector<int> >		pair_of_vector;
-		typedef std::vector<std::pair<vector, vector> >				vec_of_pair_vector;
-		typedef std::vector<std::pair<vector, vector> >::iterator	iterator_to_pair_vector;
-		typedef std::vector<std::pair<vector, iterator_to_vec_of_vectors> > pend;
-		typedef std::vector<std::pair<vector, iterator_to_vec_of_vectors> >::iterator pend_iterator;
+		typedef	std::vector<int>						vector;
+		typedef std::vector<vector>						vectorOfVectors;
+		typedef std::vector<vector>::iterator			iterator_to_vecOfVectors;
+		typedef	std::vector<int>::iterator				vector_iterator;
+		typedef std::pair<vector, iterator_to_vecOfVectors>	pend_pair;
+		typedef std::vector<std::pair<vector, iterator_to_vecOfVectors> >		pend;
+		typedef std::vector<std::pair<vector, iterator_to_vecOfVectors> >::iterator	pend_iterator;
 
 	public:
-		vector_of_vectors	mainChain;
-		pend 				pendChain;
-		int		index;
-		bool	elsize;
-		bool	odd;
-		long	odd_value;
+		vectorOfVectors	mainChain;
+		vectorOfVectors	V_vec;
+		pend 	pendChain;
+		size_t	elementSize;
+		long	odd_number;
 		vector 	data;
-		vector 	mainchain_rest;
+		vector 	copy;
 		vector 	rest;
 
 	public:
 		PmergeMe();
 		~PmergeMe();
 
-		vec_of_pair_vector	create_pairs(int size);
+		vectorOfVectors		Sort_paires();
+		vectorOfVectors		make_paires();
+		vectorOfVectors		create_paires();
+		void				insert_pend_to_main();
+	
+		void		sort_elements(vectorOfVectors& arr);
+		void		flaten_data(vectorOfVectors& V_vec);
 		void		insertion();
-		void		copy_mainchain_to_data();
-		void		copy_data_to_mainchain(int size);
-		void		copy_mainChain_to_array(vec_of_pair_vector& arr);
-		void		insert_pend_to_data(vector_iterator pos, vector vec);
-		void		setup_mdata(vec_of_pair_vector& arr);
-		void		make_new_array(vec_of_pair_vector& arr);
-		void		make_paires(vec_of_pair_vector& arr);
-		void		split_paires(vec_of_pair_vector& arr);
-		void		create_mainChain(vec_of_pair_vector& arr);
-		void		Sort_paires(vec_of_pair_vector& arr);
-		void		sort_pair_elements(pair_of_vector& vec);
-		void		InsertionSort(vector data);
-		void		mergeInsertion();
+		void		sort_pair_elements(vector& vec);
+		bool 		more_than_one_element(vectorOfVectors& arr);
+		void		create_main_and_pend(vectorOfVectors& arr);
+
 		void		is_double(int num);
 		void		store_numbers(char **av);
-		void		mergeSort(vec_of_pair_vector& arr);
+		void		mergeSort();
 		bool		is_odd();
 
-/*********************************   debug functions ***********************************/
-
 		void		print(string str);
-		void		print_array(vec_of_pair_vector& arr);
-		void		print_array_vectors(vector_of_vectors arr, string str);
+		void		print_array_vectors(vectorOfVectors arr, string str);
 		void		print_pendCain();
 		void		print_vector_elements(vector vec);
 };
 
-PmergeMe::vector new_vector(PmergeMe::vector vec, int start, int end);
 void	is_positive_number(string input);
 
 #endif

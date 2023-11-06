@@ -6,19 +6,22 @@
 #    By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:50:16 by oelbouha          #+#    #+#              #
-#    Updated: 2023/11/05 12:09:53 by oelbouha         ###   ########.fr        #
+#    Updated: 2023/11/06 22:25:52 by oelbouha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := PmergeMe
 CC := c++
-FLAGS := -std=c++98  -Wall -Wextra -Werror
+FLAGS := -std=c++98  -Wall -Wextra -Werror #-fsanitize=address -g
 SRC := main.cpp  PmergeMe.cpp debug.utils.cpp utils.cpp
 
 OBJ := $(SRC:.cpp=.o)
 OBJ := $(addprefix obj/, $(OBJ))
 
-all : $(NAME)
+all : $(NAME) run
+ 
+ run:
+	./PmergeMe 7 19 3 20 13 5 15 17 21 18 8 14 6 9 1 2 16 11 4 12 10
 
 obj/%.o:%.cpp
 	@mkdir -p obj

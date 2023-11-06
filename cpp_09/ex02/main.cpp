@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:22:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/05 21:32:19 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/06 23:54:57 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void init(char **av)
 	try
 	{
 		merge.store_numbers(av);
-		merge.mergeInsertion();
-		cout << "szie : " << merge.data.size() << endl;
+		merge.mergeSort();
+		// cout << "szie : " << merge.data.size() << endl;
 		merge.print_vector_elements(merge.data);
 	}
 	catch(const std::exception& e)
