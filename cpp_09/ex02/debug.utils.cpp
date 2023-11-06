@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 22:57:45 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/04 10:42:08 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:52:03 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,16 @@ void	PmergeMe::print_vector_elements(vector vec)
 {
 	vector_iterator cur;
 
-	printf("	+++++++++++++++++++++++++++++++++++++++++++++    \n");
+	// printf("----------------------------------------------------------------\n");
+	cout << "vec: { ";
 	cur = vec.begin();
 	while (cur != vec.end())
 	{
-		cout << "vec: " << *cur << endl;
+		cout << *cur << " ";
 		cur++;	
 	}
-	printf("	+++++++++++++++++++++++++++++++++++++++++++++    \n");
+	cout << " } " << endl;
+	// printf("----------------------------------------------------------------\n");
 }
 
 void	PmergeMe::print_array_vectors(vector_of_vectors vec, string str)
@@ -96,9 +98,6 @@ void	PmergeMe::print_pendCain()
 				cout << *cur << " ";
 		cout << "}" << endl;
 		// if (it->second)
-		scnd = it->second;
-		if (scnd->begin() != scnd->end())
-			cout << "next : " << *scnd->begin() << endl;
 		it++;
 	}
 	cout << "}" << endl;

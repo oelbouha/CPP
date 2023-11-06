@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:22:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/04 11:24:22 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:32:19 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ void	is_positive_number(string input)
 void init(char **av)
 {
 	PmergeMe 	merge;
-	PmergeMe::vector_iterator it;
 
 	try
 	{
 		merge.store_numbers(av);
-		PmergeMe::vec_of_pair_vector arr = merge.create_pairs(2);
-		merge.mergeInsertion(merge.data, 0, merge.data.size() - 1);
-		// merge.print_array(arr);
+		merge.mergeInsertion();
+		cout << "szie : " << merge.data.size() << endl;
 		merge.print_vector_elements(merge.data);
 	}
 	catch(const std::exception& e)
@@ -43,7 +41,6 @@ void init(char **av)
 
 int main(int c, char **av)
 {
-	
 	if (c != 1)
 		init(&av[1]);
 	else

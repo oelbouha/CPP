@@ -6,64 +6,20 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/04 12:44:41 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:08:45 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <utility>
 
 PmergeMe::PmergeMe(): index(0){
 	odd_value = -1;
+	elsize = true;
+	index = 0;
 }
 
 PmergeMe::~PmergeMe(){}
-
-bool	PmergeMe::is_odd(){
-	return (data.size() % 2 ? true : false);
-}
-
-void	PmergeMe::store_numbers(char **av)
-{
-	long	num;
-
-	for(int i = 0; av[i]; i++)
-	{
-		is_positive_number(av[i]);
-		num = std::strtod(av[i], NULL);
-		is_double(num);
-		data.push_back(num);
-	}
-	if (is_odd())
-	{
-		odd_value = *--data.end();
-		data.pop_back();
-	}
-}
-
-void	PmergeMe::is_double(int num)
-{
-	vector_iterator it;
-
-	it = std::find(data.begin(), data.end(), num);
-	if (it != data.end())
-		throw std::invalid_argument("There is double");
-}
-
-void	PmergeMe::sort_each_pair(PmergeMe::pair_of_vector& vec)
-{
-	vector_iterator	first;
-	vector_iterator	second;
-	int		temp;
-
-	first = vec.first.begin();
-	second = vec.second.begin();
-	if (*first > *second)
-	{
-		temp = *first;
-		vec.first[0] = *second;
-		vec.second[0] = temp;
-	}
-}
 
 PmergeMe::vec_of_pair_vector	PmergeMe::create_pairs(int size)
 {
@@ -78,21 +34,18 @@ PmergeMe::vec_of_pair_vector	PmergeMe::create_pairs(int size)
 		pair.second.clear();
 		pair.first.push_back(*cur);
 		pair.second.push_back(*(cur + 1));
-		sort_each_pair(pair);
+		sort_pair_elements(pair);
 		arr.push_back(pair);
 		cur += size;
 	}
 	return (arr);
 }
 
-void	PmergeMe::mergeInsertion(vector vec, int left, int right)
+void	PmergeMe::mergeInsertion()
 {
 	vec_of_pair_vector	vec_arr;
-	(void)vec;
 
-	int mid = (right + left) / 2;
-	(void)mid;
-	vec_arr = create_pairs(2);
+	vec_arr.reserve(data.size());
 	mergeSort(vec_arr);
 }
 
@@ -102,8 +55,7 @@ void	PmergeMe::Sort_paires(vec_of_pair_vector& arr)
 	iterator_to_pair_vector		prev;
 	vector_iterator				first;
 	vector_iterator				second;
-	vector						temp_first;
-	vector						temp_second;
+	pair_of_vector				temp;
 
 	cur = arr.begin();
 	while (cur != arr.end() - 1)
@@ -114,13 +66,12 @@ void	PmergeMe::Sort_paires(vec_of_pair_vector& arr)
 		second = cur->second.end() - 1;
 		if (*first > *second)
 		{
-			temp_first = prev->first;
-			temp_second = prev->second;
+			temp.first = prev->first;
+			temp.second = prev->second;
 			prev->first = cur->first;
 			prev->second = cur->second;
-			cur->first = temp_first;
-			cur->second = temp_second;
-			cur = arr.begin();
+			cur->first = temp.first;
+			cur->second = temp.second;
 		}
 	}
 }
@@ -131,14 +82,24 @@ void	PmergeMe::make_paires(vec_of_pair_vector& arr)
 	iterator_to_pair_vector	prev;
 	vector					first;
 	vector					second;
+	pair_of_vector frst;
+	pair_of_vector scnd;
 
-	if (arr.size() == 1)
-		return ;
+	if (index == 1)
+	{
+		if (is_odd())
+		{
+			odd_value = *--data.end();
+			data.pop_back();
+		}
+		arr = create_pairs(2);
+		// data.clear();
+	}
 	if (arr.size() % 2)
 	{
 		cur = arr.end() - 1;
-		rest.first = cur->first;
-		rest.second = cur->second;
+		rest = cur->first;
+		rest.insert(rest.end(), cur->second.begin(), cur->second.end());
 		arr.erase(cur);
 	}
 	cur = arr.begin();
@@ -167,11 +128,11 @@ void	PmergeMe::split_paires(vec_of_pair_vector& arr)
 	size_t		size;
 
 	cur = arr.begin();
+	size = cur->first.size() / 2;
 	if (cur->first.size() == 1)
 		return ;
 	while (cur != arr.end())
 	{
-		size = cur->first.size() / 2;
 		pair1.first.clear();
 		pair1.second.clear();
 		pair1.first.assign(cur->first.begin(), (cur->first.end() - size));
@@ -184,6 +145,15 @@ void	PmergeMe::split_paires(vec_of_pair_vector& arr)
 		new_arr.push_back(pair2);
 		cur++;
 	}
+	if (mainchain_rest.size())
+	{
+		pair2.first.clear();
+		pair2.second.clear();
+		pair2.first.assign(mainchain_rest.begin(), (mainchain_rest.end() - size));
+		pair2.second.assign((mainchain_rest.end() - size), mainchain_rest.end());
+		new_arr.push_back(pair2);
+		mainchain_rest.clear();
+	}
 	arr = new_arr;
 }
 
@@ -193,68 +163,29 @@ void	PmergeMe::copy_mainChain_to_array(vec_of_pair_vector& arr)
 	vector_iterator			it;
 	pair_of_vector			pair;
 
+	if (mainChain.size() % 2 )
+	{
+		mainchain_rest = mainChain[mainChain.size() - 1];
+		printf("xyata :: --> \n");
+		print_vector_elements(mainchain_rest);
+		mainChain.erase(mainChain.end() - 1);
+	}
 	arr.clear();
-	cur = mainChain.begin();
-	while (cur != mainChain.end())
+	int size = mainChain.size();
+	int i = 0;
+	while (i < size)
 	{
-		pair.first.clear();
-		pair.second.clear();
-		for (it = cur->begin(); it != cur->end(); it++)
-			pair.first.push_back(*it);
-		cur++;
-		if (cur == mainChain.end())
-			break ;
-		for (it = cur->begin(); it != cur->end(); it++)
-			pair.second.push_back(*it);
+		pair.first = mainChain[i];
+		pair.second = mainChain[i + 1];
 		arr.push_back(pair);
-		cur++;
+		i += 2;
 	}
-}
-
-void	PmergeMe::copy_mainchain_to_data()
-{
-	iterator_to_vector	cur;
-	vector_iterator 	it;
-
-	data.clear();
-	cur = mainChain.begin();
-	while (cur != mainChain.end())
+	if (mainchain_rest.size())
 	{
-		for(it = cur->begin(); it != cur->end(); it++)
-			data.push_back(*it);
-		cur++;	
-	}
-}
-
-void	PmergeMe::insert_pend_to_data(vector_iterator pos, vector vec)
-{
-	vector_iterator it;
-
-	it = vec.begin();
-	while (it != vec.end())
-	{
-		data.insert(pos, *it);
-		pos++;
-		it++;
-	}
-}
-
-void	PmergeMe::copy_data_to_mainchain(int size)
-{
-	iterator_to_vec_of_vectors main;
-	vector_iterator it;
-	vector temp;
-
-	mainChain.clear();
-	for(it = data.begin(); it != data.end(); )
-	{
-		for(int i = size; i; i--)
-		{
-			temp.push_back(*it);
-			it++;
-		}
-		mainChain.push_back(temp);
-		temp.clear();
+		// pair.first = mainchain_rest;
+		// // pair.second = mainchain_rest;
+		// arr.push_back(pair);
+		// mainchain_rest.clear();
 	}
 }
 
@@ -266,26 +197,22 @@ void	PmergeMe::insertion()
 	pend_iterator	pend_it;
 	int num;
 
-	copy_mainchain_to_data();
+	// print_vector_elements(data);
 	pend_it = pendChain.begin();
 	while (pend_it != pendChain.end())
 	{
-		if (pend_it->first.size())
-			num = pend_it->first[0];
-		else
-		 	num = *pend_it->first.begin();
-		cout << " Inserting number ---> " << num << endl;
+		num = pend_it->first.back();
 		pos = std::lower_bound(data.begin(), data.end(), num);
 		insert_pend_to_data(pos, pend_it->first);
 		pend_it++;
 	}
 	copy_data_to_mainchain(mainChain.begin()->size());
+	// print_array_vectors(mainChain, "mainchain : ");
 }
 
 void	PmergeMe::create_mainChain(vec_of_pair_vector& arr)
 {
 	cout << "creating main and pend Chain .....\n\n";
-
 	std::pair<vector, iterator_to_vec_of_vectors> pair;
 	iterator_to_pair_vector 	it;
 	iterator_to_vec_of_vectors	cur;
@@ -296,22 +223,31 @@ void	PmergeMe::create_mainChain(vec_of_pair_vector& arr)
 		return ;
 	mainChain.clear();
 	pendChain.clear();
+	pendChain.reserve(1000);
 	it = arr.begin();
 	mainChain.push_back(it->first);
 	mainChain.push_back(it->second);
+	print_array(arr);
 	it++;
-	cur = mainChain.begin();
 	while (it != arr.end())
 	{
-		mainChain.push_back(it->second);
+		mainChain.push_back(it->second); // insert instead
 		pair.first  = it->first;
 		pair.second = mainChain.end() - 1;
 		pendChain.push_back(pair);
 		it++;
 	}
-	if (odd_value != -1 && arr.begin()->first.size() == 1)
+	copy_mainchain_to_data();
+	if (rest.size())
 	{
-		printf("first ......\n");
+		pair.first = rest;
+		pair.second = mainChain.end() - 1;
+		pendChain.push_back(pair);
+		rest.clear();
+	}
+	if (odd_value != -1 )
+	{
+		cout << "od value : " << odd_value << endl;
 		pair.first.clear();
 		pair.second->clear();
 		pair.first.push_back(odd_value);
@@ -320,10 +256,18 @@ void	PmergeMe::create_mainChain(vec_of_pair_vector& arr)
 		odd_value = -1;
 	}
 	// print_array(arr);
-	insertion();
+	// print_array_vectors(mainChain, "mainchain: -->");
 	// print_pendCain();
+	insertion();
 	copy_mainChain_to_array(arr);
-	// print_array_vectors(mainChain, "mainChain");
+	// mainChain.clear();
+
+	/*
+		mainChain is a vector of vectors;
+		--- inserted all pend to mainChain
+			insert rest to the end of mainChain
+			flatten and assign to data.
+	*/
 }
 
 
@@ -331,103 +275,21 @@ void	PmergeMe::mergeSort(vec_of_pair_vector& arr)
 {
 	if (arr.size() != 1)
 	{
-		Sort_paires(arr);
+		index++;
+		// cout << "***********-------- recursion ---------**********\n\n";
 		make_paires(arr);
+		Sort_paires(arr); // return a vec of vectors 
+		
+		// copy vec of vectors to data
+		// if (les or equal to two elements)
+		// 	return ;
+		// cout << " ***********--   ------------------------    --**********\n\n";
 		mergeSort(arr);
 	}
-	cout << "***********-------- reverse recursion ---------**********\n\n";
-	// setup_mdata(arr);
-	// print_vector_elements(data);
-	split_paires(arr);
-	// create_mainChain(arr);
-	print_array(arr);
-	cout << " ***********--   ------------------------    --**********\n\n";
+	cout << "--------------------------- reverse recursion -------------------------\n\n";
+	index--;
+	// Sort_paires(arr);
+	// split_paires(arr);
+	create_mainChain(arr);
+	cout << " ------------------------------------------------------------\n\n";
 }
-
-void PmergeMe::InsertionSort(vector data)
-{
-	vector_iterator previous;
-	vector_iterator prev;
-	vector_iterator cur;
-	vector_iterator it;
-	int	temp;
-	int	idx;
-	int	iteration;
-
-	prev = data.begin();
-	for(it = prev + 1, idx = 1; it != data.end(); it++, idx++, prev++)
-	{
-		cur = it;
-		temp = *it;
-		previous = prev;
-		for(iteration = idx; iteration; iteration--)
-		{
-			if (temp < *previous)
-			{
-				data.erase(cur);
-				data.insert(cur - 1, temp);
-				previous--;
-				cur--;
-			}
-		}
-	}	
-}
-
-/*
-
-	2 11  1 55   0  120  10 140 
-	
-	0  120
-	2 11  
-	1 55  
-	10 140 
-
-	0  1
-	2 10 
-	120 11 
-	55 140
-
-	0 1 2 10 11 120 140
-*/
-
-/*
-	its___titimarh
-	alaouisana02
-	0613068849
-*/
-
-// void	PmergeMe::setup_mdata(vec_of_pair_vector& arr)
-// {
-// 	iterator_to_vector	cur;
-// 	vector_iterator 	it;
-// 	iterator_to_pair_vector ite;
-
-// 	// data.clear();
-// 	// for (cur = mainChain.begin(); cur != mainChain.end(); cur++)
-// 	// 	for(it = cur->begin(); it != cur->end(); it++)
-// 	// 		data.push_back(*it);
-// 	ite = arr.begin();
-// 	int size = ite->first.size() / 2;
-// 	cout << "size : " << size << endl;
-// 	vec_of_pair_vector	new_arr;
-// 	pair_of_vector		pair;
-
-// 	printf("here -------> \n");
-// 	print_vector_elements(data);
-// 	it = data.begin();
-// 	while (it != data.end())
-// 	{
-// 		pair.first.clear();
-// 		pair.second.clear();
-// 		for (int i = size; i; i--, it++)
-// 			pair.first.push_back(*it);
-// 		for (int i = size; i; i--, it++)
-// 			pair.second.push_back(*it);
-// 		// sort_each_pair(pair);
-// 		new_arr.push_back(pair);
-// 		// it += size;
-// 	}
-// 	arr = new_arr;
-// 	print_array(new_arr);
-// 	printf("here -------> \n");
-// }

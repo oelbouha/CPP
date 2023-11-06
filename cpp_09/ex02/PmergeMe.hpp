@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/04 10:44:32 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:34:55 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ class PmergeMe
 		vector_of_vectors	mainChain;
 		pend 				pendChain;
 		int		index;
+		bool	elsize;
 		bool	odd;
 		long	odd_value;
 		vector 	data;
-		pair_of_vector 	rest;
+		vector 	mainchain_rest;
+		vector 	rest;
 
 	public:
 		PmergeMe();
@@ -64,9 +66,9 @@ class PmergeMe
 		void		split_paires(vec_of_pair_vector& arr);
 		void		create_mainChain(vec_of_pair_vector& arr);
 		void		Sort_paires(vec_of_pair_vector& arr);
-		void		sort_each_pair(pair_of_vector& vec);
+		void		sort_pair_elements(pair_of_vector& vec);
 		void		InsertionSort(vector data);
-		void		mergeInsertion(vector vec, int left, int right);
+		void		mergeInsertion();
 		void		is_double(int num);
 		void		store_numbers(char **av);
 		void		mergeSort(vec_of_pair_vector& arr);
@@ -81,6 +83,7 @@ class PmergeMe
 		void		print_vector_elements(vector vec);
 };
 
+PmergeMe::vector new_vector(PmergeMe::vector vec, int start, int end);
 void	is_positive_number(string input);
 
 #endif
