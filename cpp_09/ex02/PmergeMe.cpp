@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/06 23:54:41 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:16:49 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 PmergeMe::PmergeMe()
 {
+	comparisonCount = 0;
 	odd_number = -1;
 	elementSize = 1;
 }
@@ -28,44 +29,71 @@ bool compare(PmergeMe::vector first, PmergeMe::vector second)
 	return (first.back() < second.back());
 }
 
+void	PmergeMe::update_pend(iterator_to_vecOfVectors it)
+{
+	pend_iterator P_it;
+
+	P_it = pendChain.begin();
+	for (; P_it != pendChain.end(); ++P_it)
+	{
+		if (P_it->second >= it)
+			++P_it->second;
+	}
+}
+
 void	PmergeMe::insert_pend_to_main()
 {
 	iterator_to_vecOfVectors	pos;
+	iterator_to_vecOfVectors	it;
 	pend_iterator	P_it;
-	
-	P_it = pendChain.begin();
-	// print_array_vectors(mainChain, "\nmainchain before insertion ");
-	while (P_it != pendChain.end())
+	long int jcb_stl[] = {
+        2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366,
+        2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050,
+        1398102, 2796202, 5592406, 11184810, 22369622, 44739242, 89478486,
+        178956970, 357913942, 715827882, 1431655766, 2863311530, 5726623062,
+        11453246122, 22906492246, 45812984490
+    };
+	int	idx = 0;
+	while (pendChain.size())
 	{
-		pos = std::lower_bound(mainChain.begin(), mainChain.end() - 1, P_it->first, compare);
-		// cout << "inserting number --> " << P_it->first.back() << endl;
-		// cout << "pos number --> " << pos->back() << endl;
-		if (P_it->first.back() > pos->back())
-			mainChain.insert(pos + 1, P_it->first);
-		else
-			mainChain.insert(pos, P_it->first);
-		P_it++;
+		pend_iterator	end = pendChain.begin();
+		pend_iterator	start = pendChain.begin();
+
+		for (int i = 0; i < jcb_stl[idx] - 1 && start != pendChain.end(); ++i)
+			++start;
+
+		if (start == pendChain.end())
+			--start;
+		// cout << idx << " " << pendChain.size() << endl;
+		while (true)
+		{
+			// cout << "here " << " " << start->first.back() << endl;
+			pos = std::lower_bound(mainChain.begin(), start->second, start->first, compare);
+			it = mainChain.insert(pos, start->first);
+			update_pend(it);
+			pendChain.erase(start);
+			if (start == end)
+				break ;
+			--start;
+		}
+		++idx;
 	}
 	if (rest.size())
 	{
 		mainChain.insert(mainChain.end(), rest);
 		rest.clear();
 	}
-	// print_array_vectors(mainChain, "\nmainchain after insertion ");
 }
 
 void	PmergeMe::insertion()
 {
 	elementSize /= 2;
 	V_vec = make_paires();
-	print_array_vectors(V_vec, "vector after : ");
+	print_array_vectors(V_vec, "vector");
 	create_main_and_pend(V_vec);
-	// print_array_vectors(mainChain, "\nmainchain before insertion ");
 	// print_pendCain();
 	insert_pend_to_main();
-	// print_array_vectors(mainChain, "\nmainchain after insertion -- > ");
 	flaten_data(mainChain);
-	// print_vector_elements(data);
 }
 
 void	PmergeMe::create_main_and_pend(vectorOfVectors& V_vec)
@@ -79,31 +107,25 @@ void	PmergeMe::create_main_and_pend(vectorOfVectors& V_vec)
 
 	if (V_vec.back().size() != V_vec.begin()->size())
 	{
-		// printf("start ........ elsement size --> %lu\n", elementSize);
 		rest = V_vec[V_vec.size() - 1];
 		V_vec.pop_back();
 	}
 	pendChain.clear();
 	mainChain.clear();
-	pendChain.reserve(300);
-	mainChain.reserve(300);
+	pendChain.reserve(data.size());
+	mainChain.reserve(data.size());
 	mainChain.push_back(V_vec[0]);
 	it = mainChain.insert(mainChain.end(), V_vec[1]);
 	V_size = V_vec.size();
-	for (i = 2; i < V_size;)
+	for (i = 2; i < V_size; i++)
 	{
 		pair.first = V_vec[i];
-		i++;
-		if (i == V_size)
-		{
-			it = mainChain.end();
-			pendChain.push_back(pair);
-			break ;
-		}
-		it = mainChain.insert(mainChain.end(), V_vec[i]);
+		++i;
+		it = mainChain.end();
+		if (i < V_size)
+			it = mainChain.insert(mainChain.end(), V_vec[i]);
 		pair.second = it;
-		pendChain.push_back(pair);
-		i++;
+		pendChain.push_back(pair);	
 	}
 }
 
@@ -123,6 +145,7 @@ void	PmergeMe::sort_elements(vectorOfVectors& arr)
 			break ;
 		if (first.back() > second.back())
 		{
+			++comparisonCount;
 			temp = first;
 			arr[i] = second;
 			arr[i + 1] = temp;
@@ -201,15 +224,15 @@ void	PmergeMe::flaten_data(vectorOfVectors& V_vec)
 
 void	PmergeMe::mergeSort()
 {
-	cout << "---------------- recursion -------------------\n";
+	cout << "--------------------- recursion -----------------------\n";
 	elementSize *= 2;
 	V_vec = Sort_paires();
+	print_array_vectors(V_vec, "vector");
 	flaten_data(V_vec);
-	// print_array_vectors(V_vec, "vec of vectors : ");
-	cout << "------------------------------------------------\n\n";
+	cout << "-------------------------------------------------------\n\n";
 	if (more_than_one_element(V_vec))
 		mergeSort();
 	cout << "---------------- reverse  recursion -------------------\n";
 	insertion();
-	cout << "------------------------------------------------\n\n";
+	cout << "-------------------------------------------------------\n\n";
 }

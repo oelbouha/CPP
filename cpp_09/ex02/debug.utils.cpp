@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 22:57:45 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/06 21:55:55 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:13:47 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,12 @@ void	PmergeMe::print_vector_elements(vector vec)
 {
 	vector_iterator cur;
 
-	// printf("----------------------------------------------------------------\n");
-	cout << "vec: { ";
 	cur = vec.begin();
 	while (cur != vec.end())
 	{
 		cout << *cur << " ";
 		cur++;	
 	}
-	cout << " } " << endl;
-	// printf("----------------------------------------------------------------\n");
 }
 
 void	PmergeMe::print_array_vectors(vectorOfVectors vec, string str)

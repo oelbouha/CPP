@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:07:02 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/06 21:31:43 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:05:12 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ PmergeMe::sort_pair_elements(PmergeMe::vector& vec)
 	{
 		if (vec[i] > vec[i + 1])
 		{
+			++comparisonCount;
 			temp = vec[i + 1];
 			vec[i + 1] = vec[i];
 			vec[i] = temp;

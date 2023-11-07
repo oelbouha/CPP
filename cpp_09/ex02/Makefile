@@ -6,7 +6,7 @@
 #    By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:50:16 by oelbouha          #+#    #+#              #
-#    Updated: 2023/11/06 22:25:52 by oelbouha         ###   ########.fr        #
+#    Updated: 2023/11/07 15:08:23 by oelbouha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ := $(addprefix obj/, $(OBJ))
 all : $(NAME) run
  
  run:
-	./PmergeMe 7 19 3 20 13 5 15 17 21 18 8 14 6 9 1 2 16 11 4 12 10
+	./PmergeMe 7 19 3 20 13 5 15 17 21 18 8 14 6 9 1 2 16 11 4 12 10 
 
 obj/%.o:%.cpp
 	@mkdir -p obj

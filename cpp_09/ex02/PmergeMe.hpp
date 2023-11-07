@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/06 20:55:36 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:03:30 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ class PmergeMe
 		typedef std::vector<std::pair<vector, iterator_to_vecOfVectors> >::iterator	pend_iterator;
 
 	public:
-		vectorOfVectors	mainChain;
-		vectorOfVectors	V_vec;
-		pend 	pendChain;
-		size_t	elementSize;
-		long	odd_number;
-		vector 	data;
-		vector 	copy;
-		vector 	rest;
+		vectorOfVectors		mainChain;
+		vectorOfVectors		V_vec;
+		pend 				pendChain;
+		size_t				elementSize;
+		size_t				comparisonCount;
+		long				odd_number;
+		vector 				data;
+		vector 				copy;
+		vector 				rest;
 
 	public:
 		PmergeMe();
@@ -62,7 +63,7 @@ class PmergeMe
 		void		sort_pair_elements(vector& vec);
 		bool 		more_than_one_element(vectorOfVectors& arr);
 		void		create_main_and_pend(vectorOfVectors& arr);
-
+		void		update_pend(iterator_to_vecOfVectors it);
 		void		is_double(int num);
 		void		store_numbers(char **av);
 		void		mergeSort();
