@@ -6,10 +6,11 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:22:46 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/07 15:15:56 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/08 01:16:16 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PmergeList.hpp"
 #include "PmergeMe.hpp"
 
 
@@ -24,19 +25,18 @@ void	is_positive_number(string input)
 
 void init(char **av)
 {
-	PmergeMe 	merge;
+	PmergeMeList 	list;
 
 	try
 	{
-		merge.store_numbers(av);
-		merge.copy = merge.data;
-		merge.mergeSort();
-		cout << "before  : ";
-		merge.print_vector_elements(merge.copy);
-		cout << "\nafter   : ";
-		merge.print_vector_elements(merge.data);
-		cout << "\nnumber of comparisons : "<< merge.comparisonCount << endl;
-		cout << "data size : "<< merge.data.size() << endl;
+		list.store_numbers(av);
+		list.copy = list.data;
+		list.mergeSort();
+		cout << "list size --> " << list.data.size() << endl;
+		cout << "before : ";
+		list.print_vector_elements(list.copy);
+		cout << "\nafter  : ";
+		list.print_vector_elements(list.data);
 	}
 	catch(const std::exception& e)
 	{
@@ -52,6 +52,5 @@ int main(int c, char **av)
 		cout << "error: No input found" << endl;
 	return 0;
 }
-
 
 

@@ -6,16 +6,12 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:07:02 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/07 15:05:12 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:37:49 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-bool
-PmergeMe::is_odd(){
-	return (data.size() % 2 ? true : false);
-}
 
 bool
 PmergeMe::more_than_one_element(vectorOfVectors& arr)

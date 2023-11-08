@@ -6,14 +6,11 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:43:56 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/07 15:16:49 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:22:26 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <algorithm>
-#include <sys/_types/_size_t.h>
-#include <utility>
 
 PmergeMe::PmergeMe()
 {
@@ -100,7 +97,6 @@ void	PmergeMe::create_main_and_pend(vectorOfVectors& V_vec)
 {
 	iterator_to_vecOfVectors it;
 	iterator_to_vecOfVectors cur;
-	vectorOfVectors main;
 	pend_pair	pair;
 	size_t		V_size;
 	size_t		i;

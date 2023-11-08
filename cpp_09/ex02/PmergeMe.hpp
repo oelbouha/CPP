@@ -6,7 +6,7 @@
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/07 15:03:30 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:37:55 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 using std::cout;
 using std::endl;
 using std::string;
+
 
 class PmergeMe
 {
@@ -67,7 +68,6 @@ class PmergeMe
 		void		is_double(int num);
 		void		store_numbers(char **av);
 		void		mergeSort();
-		bool		is_odd();
 
 		void		print(string str);
 		void		print_array_vectors(vectorOfVectors arr, string str);
