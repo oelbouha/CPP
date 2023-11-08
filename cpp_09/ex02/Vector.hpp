@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oelbouha <oelbouha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:20:58 by oelbouha          #+#    #+#             */
-/*   Updated: 2023/11/07 21:37:55 by oelbouha         ###   ########.fr       */
+/*   Updated: 2023/11/08 01:50:36 by oelbouha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PMERGEME_HPP
-#define PMERGEME_HPP
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
 
-
-#include <iostream>
-#include <exception>
-#include <algorithm>
-#include <list>
-#include <sys/_types/_size_t.h>
-#include <utility>
-#include <vector>
-
-using std::cout;
-using std::endl;
-using std::string;
-
+#include "utils.hpp"
 
 class PmergeMe
 {
@@ -74,7 +62,5 @@ class PmergeMe
 		void		print_pendCain();
 		void		print_vector_elements(vector vec);
 };
-
-void	is_positive_number(string input);
 
 #endif
